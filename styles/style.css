@@ -1,0 +1,99 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 10px;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgb(32, 32, 32);
+}
+
+.calculator {
+  width: 720px;
+  display: flex;
+  align-items: stretch;
+  justify-content: space-between;
+  gap: 10px;
+}
+.calculator-wrapper {
+  flex-shrink: 0;
+  max-width: 500px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+.calculator-display {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  flex-direction: column;
+  width: 100%;
+  min-height: 120px;
+  max-height: 200px;
+  padding: 10px 20px;
+  text-align: right;
+  word-wrap: break-word;
+  word-break: break-all;
+  border: 2px solid rgb(225, 225, 225);
+  border-radius: 10px;
+}
+.calculator-display__previous-operand {
+  font-size: 1.5em;
+  color: rgb(146, 146, 146);
+}
+.calculator-display__current-operand {
+  font-size: 3em;
+  color: rgb(255, 255, 255);
+}
+.calculator-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 3px;
+}
+.calculator__button {
+  flex: 1 1 calc(25% - 3px);
+  cursor: pointer;
+  padding: 20px 30px;
+  font-size: 2.2em;
+  border: none;
+  border-radius: 4px;
+}
+.calculator__button_operator {
+  background-color: rgb(50, 50, 50);
+  color: rgb(225, 225, 225);
+}
+.calculator__button_operator:hover {
+  background-color: rgb(60, 60, 60);
+}
+.calculator__button_number {
+  background-color: rgb(59, 59, 59);
+  color: rgb(225, 225, 225);
+}
+.calculator__button_number:hover {
+  background-color: rgb(50, 50, 50);
+}
+.calculator__button_equals {
+  background-color: rgb(97, 204, 255);
+  color: rgb(225, 225, 225);
+}
+.calculator__button_equals:hover {
+  background-color: rgb(90, 186, 232);
+}
+.calculator__button_equals:active {
+  background-color: rgb(83, 169, 210);
+}/*# sourceMappingURL=style.css.map */

@@ -1,0 +1,150 @@
+$color-background-dark: rgb(32, 32, 32);
+
+$color-button-operator-dark: rgb(50, 50, 50);
+$color-button-operator-hover-dark: rgb(60, 60, 60);
+
+$color-button-numbers-dark: rgb(59, 59, 59);
+$color-button-numbers-hover-dark: rgb(50, 50, 50);
+$color-button-active-hover-dark: rgb(40, 40, 40);
+
+$color-button-equals-dark: rgb(97, 204, 255);
+$color-button-equals-hover-dark: rgb(90, 186, 232);
+$color-button-equals-active-dark: rgb(83, 169, 210);
+
+$color-text-button-dark: rgb(225, 225, 225);
+$color-text-button-active-dark: rgb(208, 208, 208);
+
+$color-text-previous-dark: rgb(146, 146, 146);
+$color-text-current-dark: rgb(255, 255, 255);
+
+$buttons-gap: 3px;
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 10px;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 100vw;
+  height: 100vh;
+  background-color: $color-background-dark;
+}
+
+
+.calculator {
+  width: 720px;
+
+  display: flex;
+  align-items: stretch;
+  justify-content: space-between;
+  gap: 10px;
+
+  &-wrapper {
+    flex-shrink: 0;
+
+    max-width: 500px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 10px;
+  }
+
+  &-display {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    flex-direction: column;
+
+    width: 100%;
+    min-height: 120px;
+    max-height: 200px;
+
+    padding: 10px 20px;
+
+    text-align: right;
+    word-wrap: break-word;
+    word-break: break-all;
+
+    border: 2px solid $color-text-button-dark;
+    // border-radius: 10px 10px 0 0;
+    border-radius: 10px;
+
+    &__previous-operand {
+      font-size: 1.5em;
+      color: $color-text-previous-dark;
+    }
+
+    &__current-operand {
+      font-size: 3em;
+      color: $color-text-current-dark;
+    }
+  }
+
+  &-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+
+    gap: $buttons-gap;
+  }
+
+  &__button {
+    flex: 1 1 calc(25% - $buttons-gap);
+
+    cursor: pointer;
+
+    padding: 20px 30px;
+
+    font-size: 2.2em;
+    border: none;
+    border-radius: 4px;
+
+    &_operator {
+      background-color: $color-button-operator-dark;
+      color: $color-text-button-dark;
+
+      &:hover {
+        background-color: $color-button-operator-hover-dark;
+      }
+
+    }
+
+    &_number {
+      background-color: $color-button-numbers-dark;
+      color: $color-text-button-dark;
+
+      &:hover {
+        background-color: $color-button-numbers-hover-dark;
+      }
+    }
+
+    &_equals {
+      background-color: $color-button-equals-dark;
+      color: $color-text-button-dark;
+
+      &:hover {
+        background-color: $color-button-equals-hover-dark;
+      }
+
+      &:active {
+        background-color: $color-button-equals-active-dark;
+      }
+    }
+  }
+}
