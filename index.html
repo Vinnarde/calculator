@@ -8,43 +8,127 @@
   <title>Calculator</title>
   <link rel="stylesheet" href="styles/normalize.css">
   <link rel="stylesheet" href="styles/style.css">
+  <link rel="stylesheet" href="https://unpkg.com/simplebar@latest/dist/simplebar.css" />
   <script defer src="main.js"></script>
+  <script defer src="https://unpkg.com/simplebar@latest/dist/simplebar.min.js"></script>
 </head>
 
 <body>
-  <div class="container">
-    <div class="calculator">
-      <div class="calculator-wrapper">
-        <div class="calculator-display">
-          <div class="calculator-display__previous-operand" data-previous-operand>123 + 1 =</div>
-          <div class="calculator-display__current-operand" data-current-operand>124</div>
+  <main>
+    <div class="container">
+      <div class="calculator">
+        <div class="calculator-wrapper">
+          <div class="calculator-display">
+            <div class="calculator-display__previous-operand" data-previous-operand></div>
+            <div class="calculator-display__current-operand" data-current-operand>0</div>
+          </div>
+          <div class="calculator-buttons">
+            <button class="calculator__button calculator__button_operator" data-unary-operation="sqrt">&Sqrt;</button>
+            <button class="calculator__button calculator__button_operator" data-operation="pow">x<sup>y</sup></button>
+            <button class="calculator__button calculator__button_operator" data-operation="percentage">&percnt;</button>
+            <button class="calculator__button calculator__button_operator" data-all-clear>AC</button>
+            <button class="calculator__button calculator__button_number" data-number>7</button>
+            <button class="calculator__button calculator__button_number" data-number>8</button>
+            <button class="calculator__button calculator__button_number" data-number>9</button>
+            <button class="calculator__button calculator__button_operator" data-operation="divide">&divide;</button>
+            <button class="calculator__button calculator__button_number" data-number>4</button>
+            <button class="calculator__button calculator__button_number" data-number>5</button>
+            <button class="calculator__button calculator__button_number" data-number>6</button>
+            <button class="calculator__button calculator__button_operator" data-operation="multiply">&times;</button>
+            <button class="calculator__button calculator__button_number" data-number>1</button>
+            <button class="calculator__button calculator__button_number" data-number>2</button>
+            <button class="calculator__button calculator__button_number" data-number>3</button>
+            <button class="calculator__button calculator__button_operator" data-operation="substract">-</button>
+            <button class="calculator__button calculator__button_number" data-number>0</button>
+            <button class="calculator__button calculator__button_number" data-number>.</button>
+            <button class="calculator__button calculator__button_equals" data-equals>=</button>
+            <button class="calculator__button calculator__button_operator" data-operation="add">+</button>
+          </div>
         </div>
-        <div class="calculator-buttons">
-          <button class="calculator__button calculator__button_operator" data-operation>&Sqrt;</button>
-          <button class="calculator__button calculator__button_operator" data-operation>x<sup>y</sup></button>
-          <button class="calculator__button calculator__button_operator" data-operation>&percnt;</button>
-          <button class="calculator__button calculator__button_operator" data-all-clear>AC</button>
-          <button class="calculator__button calculator__button_number" data-number>7</button>
-          <button class="calculator__button calculator__button_number" data-number>8</button>
-          <button class="calculator__button calculator__button_number" data-number>9</button>
-          <button class="calculator__button calculator__button_operator" data-operation>&divide;</button>
-          <button class="calculator__button calculator__button_number" data-number>4</button>
-          <button class="calculator__button calculator__button_number" data-number>5</button>
-          <button class="calculator__button calculator__button_number" data-number>6</button>
-          <button class="calculator__button calculator__button_operator" data-operation>&times;</button>
-          <button class="calculator__button calculator__button_number" data-number>1</button>
-          <button class="calculator__button calculator__button_number" data-number>2</button>
-          <button class="calculator__button calculator__button_number" data-number>3</button>
-          <button class="calculator__button calculator__button_operator" data-operation>-</button>
-          <button class="calculator__button calculator__button_number" data-number>0</button>
-          <button class="calculator__button calculator__button_number" data-number>.</button>
-          <button class="calculator__button calculator__button_equals" data-equals>=</button>
-          <button class="calculator__button calculator__button_operator" data-operation>+</button>
+        <div class="calculator-history">
+          <ul class="calculator-history__list">
+            <li class="calculator-history__item">
+              <div class="calculator-history__item__previous-operand">123 + 1 =</div>
+              <div class="calculator-history__item__current-operand">124</div>
+            </li>
+            <li class="calculator-history__item">
+              <div class="calculator-history__item__previous-operand">123 + 1 =</div>
+              <div class="calculator-history__item__current-operand">124</div>
+            </li>
+            <li class="calculator-history__item">
+              <div class="calculator-history__item__previous-operand">123 + 1 =</div>
+              <div class="calculator-history__item__current-operand">124</div>
+            </li>
+            <li class="calculator-history__item">
+              <div class="calculator-history__item__previous-operand">123 + 1 =</div>
+              <div class="calculator-history__item__current-operand">124</div>
+            </li>
+            <li class="calculator-history__item">
+              <div class="calculator-history__item__previous-operand">123 + 1 =</div>
+              <div class="calculator-history__item__current-operand">124</div>
+            </li>
+            <li class="calculator-history__item">
+              <div class="calculator-history__item__previous-operand">123 + 1 =</div>
+              <div class="calculator-history__item__current-operand">124</div>
+            </li>
+            <li class="calculator-history__item">
+              <div class="calculator-history__item__previous-operand">123 + 1 =</div>
+              <div class="calculator-history__item__current-operand">124</div>
+            </li>
+            <li class="calculator-history__item">
+              <div class="calculator-history__item__previous-operand">123 + 1 =</div>
+              <div class="calculator-history__item__current-operand">124</div>
+            </li>
+            <li class="calculator-history__item">
+              <div class="calculator-history__item__previous-operand">123 + 1 =</div>
+              <div class="calculator-history__item__current-operand">124</div>
+            </li>
+            <li class="calculator-history__item">
+              <div class="calculator-history__item__previous-operand">123 + 1 =</div>
+              <div class="calculator-history__item__current-operand">124</div>
+            </li>
+            <li class="calculator-history__item">
+              <div class="calculator-history__item__previous-operand">123 + 1 =</div>
+              <div class="calculator-history__item__current-operand">124</div>
+            </li>
+            <li class="calculator-history__item">
+              <div class="calculator-history__item__previous-operand">123 + 1 =</div>
+              <div class="calculator-history__item__current-operand">124</div>
+            </li>
+            <li class="calculator-history__item">
+              <div class="calculator-history__item__previous-operand">123 + 1 =</div>
+              <div class="calculator-history__item__current-operand">124</div>
+            </li>
+            <li class="calculator-history__item">
+              <div class="calculator-history__item__previous-operand">123 + 1 =</div>
+              <div class="calculator-history__item__current-operand">124</div>
+            </li>
+            <li class="calculator-history__item">
+              <div class="calculator-history__item__previous-operand">123 + 1 =</div>
+              <div class="calculator-history__item__current-operand">124</div>
+            </li>
+          </ul>
+          <div class="calculator-history__bottom">
+            <button class="calculator-history__clear">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-trash"
+                viewbox="0 0 16 16">
+                <path
+                  d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z" />
+                <path fill-rule="evenodd"
+                  d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z" />
+              </svg>
+            </button>
+          </div>
         </div>
       </div>
-      <div class="calculator-history"> </div>
     </div>
-  </div>
+  </main>
 </body>
 
 </html>
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    new SimpleBar(document.getElementsByClassName('calculator-history__list')[0]);
+  });
+</script>
