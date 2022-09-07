@@ -24,14 +24,38 @@ body {
   background-color: $color-background-dark;
 }
 
+.container {
+  min-width: $screen-xs;
+}
+
 .calculator {
-  width: 720px;
-  height: 480px;
+  width: 320px;
+  max-height: 500px;
 
   display: flex;
+  flex-direction: column;
   align-items: stretch;
   justify-content: space-between;
   gap: 10px;
+
+  padding: 10px;
+
+  @media screen and (min-width: $screen-xs) and (max-width: 575px) {
+    width: 320px;
+    max-height: 100vh;
+  }
+
+  @media screen and (min-width: $screen-sm) and (max-width: 767px) {
+    width: 540px;
+    flex-direction: row;
+    max-height: 400px;
+  }
+
+  @media screen and (min-width: $screen-md) {
+    width: 720px;
+    flex-direction: row;
+  }
+
 
   &__button {
     flex: 1 1 calc(25% - $buttons-gap);
@@ -41,6 +65,10 @@ body {
     font-size: 2.2em;
     border: none;
     border-radius: 4px;
+
+    @media screen and (max-width: $screen-md) {
+      padding: 10px;
+    }
 
     &_operator {
       background-color: $color-button-operator-dark;
@@ -97,6 +125,14 @@ body {
   justify-content: space-between;
 
   gap: 10px;
+
+  @media screen and (min-width: $screen-sm) {
+    max-width: 320px;
+  }
+
+  @media screen and (min-width: $screen-md) {
+    max-width: 500px;
+  }
 }
 
 .calculator-display {
@@ -139,12 +175,17 @@ body {
 
 .calculator-history {
   width: 100%;
+  min-width: 200px;
   border: 2px solid $color-text-button-dark;
   border-radius: 10px;
 
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+
+  @media screen and (max-width: 575px) {
+    max-height: 200px;
+  }
 
   &__list {
     width: 100%;
