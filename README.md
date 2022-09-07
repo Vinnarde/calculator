@@ -2,7 +2,11 @@
 
 Windows 10 styled calculator implemented in JavaScript.
 
-Реализована адаптивная вёрстка для разрешений 320px, 576px, 768+px.
+[View Demo](https://vinnarde.github.io/calculator/)
+
+Реализована адаптивная вёрстка для разрешений 320px, 576px, 768+px.  
+Лог операций хранится в LocalStorage (не более 100 операций).  
+Для кастомизации скролла использовался [simplebar](https://github.com/Grsmto/simplebar)
 
 Кнопочки:
  - Цифры (0-9)
