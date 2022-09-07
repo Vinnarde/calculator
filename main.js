@@ -10,6 +10,7 @@ class Calculator {
     this.previousOperand = '';
     this.operation = undefined;
     this.unaryOperation = undefined;
+    this.tempUnaryValue = undefined;
   }
 
   appendNumber(number) {
@@ -62,9 +63,6 @@ class Calculator {
       case 'pow':
         computation = Math.pow(prev, current);
         break;
-      case 'percent':
-        computation = prev / 100 * current;
-        break;
       default:
         return;
     }
@@ -81,20 +79,40 @@ class Calculator {
   }
 
   computeUnary(operation) {
-    console.log(`computeUnary was called:
-    current ${this.currentOperand}
-    operation: ${this.operation}`);
-
-    this.unaryOperation = operation;
     const current = parseFloat(this.currentOperand);
     if (isNaN(current)) return;
+
+    this.unaryOperation = operation;
+
+    console.log(`computeUnary was called:
+    current ${current}
+    operation: ${this.unaryOperation}`);
+
     switch (this.unaryOperation) {
       case 'sqrt':
+        this.tempUnaryValue = current;
         this.currentOperand = Math.sqrt(current);
         break;
       default:
         return;
     }
+  }
+
+  computePercent() {
+    const prev = parseFloat(this.previousOperand);
+    const current = parseFloat(this.currentOperand);
+
+    if (!current) return;
+
+    if (isNaN(prev) || ['multiply', 'divide'].includes(this.operation)) {
+      this.currentOperand = current / 100;
+    } else if (['add', 'subtract'].includes(this.operation)) {
+      this.currentOperand = prev / 100 * current;
+    } else return;
+
+
+    this.unaryOperation = 'percent';
+    this.tempUnaryValue = current;
   }
 
   updateDisplay() {
@@ -113,11 +131,15 @@ class Calculator {
   updateDisplayUnary() {
     switch (this.unaryOperation) {
       case 'sqrt':
-        this.previousOperandTextElement.innerText += `√(${this.currentOperand})`;
+        this.previousOperandTextElement.innerText += `√(${this.tempUnaryValue})`;
         break;
+      case 'percent':
+        this.previousOperandTextElement.innerText += ` ${this.tempUnaryValue}%`;
       default:
         return;
     }
+    this.tempUnaryValue = undefined;
+    this.unaryOperation = undefined;
   }
 
   static getOperationSymbolByName(name) {
@@ -140,6 +162,7 @@ const equalsButton = document.querySelector('[data-equals]');
 const clearButton = document.querySelector('[data-all-clear]');
 const dotButton = document.querySelector('[data-dot]');
 const unaryOperationButtons = document.querySelectorAll('[data-unary-operation]');
+const percentOperationButton = document.querySelector('[data-operation-percent]');
 
 const previousOperandTextElement = document.querySelector('[data-previous-operand]');
 const currentOperandTextElement = document.querySelector('[data-current-operand]');
@@ -169,6 +192,13 @@ unaryOperationButtons.forEach(button => {
     calculator.updateDisplay();
     calculator.updateDisplayUnary();
   })
+});
+
+percentOperationButton.addEventListener('click', () => {
+  console.log(`percent operation button clicked`);
+  calculator.computePercent();
+  calculator.updateDisplay();
+  calculator.updateDisplayUnary();
 });
 
 equalsButton.addEventListener('click', () => {
