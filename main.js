@@ -1,8 +1,35 @@
 class Calculator {
-  constructor(previousOperandTextElement, currentOperandTextElement) {
+  constructor(previousOperandTextElement, currentOperandTextElement, historyListElement) {
     this.previousOperandTextElement = previousOperandTextElement;
     this.currentOperandTextElement = currentOperandTextElement;
+    this.historyListElement = historyListElement;
+    this.loadFromLocalStorage();
+    this.renderHistory();
     this.clear();
+  }
+
+  loadFromLocalStorage() {
+    this.history = JSON.parse(localStorage.getItem('calculator')) || [];
+    if (this.history) return;
+  }
+
+  updateHistory(obj) {
+    if (this.history.length >= 100)
+      this.history.pop();
+
+    if (this.history && this.history.length < 100) {
+      this.history.unshift(obj);
+    }
+
+    console.log(`updateHistory was called:
+    history: ${JSON.stringify(this.history)}`);
+
+    this.updateLocalStorage();
+    this.renderHistory();
+  }
+
+  updateLocalStorage() {
+    localStorage.setItem('calculator', JSON.stringify(this.history));
   }
 
   clear() {
@@ -11,6 +38,12 @@ class Calculator {
     this.operation = undefined;
     this.unaryOperation = undefined;
     this.tempUnaryValue = undefined;
+  }
+
+  clearHistory() {
+    this.history = [];
+    this.updateLocalStorage();
+    this.renderHistory();
   }
 
   appendNumber(number) {
@@ -73,6 +106,11 @@ class Calculator {
     operation: ${this.operation}
     computation: ${computation}`);
 
+    this.updateHistory({
+      prev: `${prev} ${Calculator.getOperationSymbolByName(this.operation)} ${current} =`,
+      current: computation,
+    });
+
     this.currentOperand = computation;
     this.operation = undefined;
     // this.previousOperand = '';
@@ -92,10 +130,17 @@ class Calculator {
       case 'sqrt':
         this.tempUnaryValue = current;
         this.currentOperand = Math.sqrt(current);
+        this.updateHistory({
+          prev: `√(${this.tempUnaryValue}) =`,
+          current: this.currentOperand,
+        });
         break;
       default:
         return;
     }
+
+
+
   }
 
   computePercent() {
@@ -109,7 +154,6 @@ class Calculator {
     } else if (['add', 'subtract'].includes(this.operation)) {
       this.currentOperand = prev / 100 * current;
     } else return;
-
 
     this.unaryOperation = 'percent';
     this.tempUnaryValue = current;
@@ -142,6 +186,45 @@ class Calculator {
     this.unaryOperation = undefined;
   }
 
+  renderHistory() {
+    if (!this.history) return;
+
+    console.log(`renderHistory was called:
+    history: ${JSON.stringify(this.history)}
+
+    historyListElement: ${JSON.stringify(this.historyListElement)}
+    historyListElement.innerHTML: ${this.historyListElement.innerHTML}
+
+    `);
+
+    this.historyListElement.innerHTML = '';
+    if (this.history.length === 0) {
+      this.historyListElement.innerHTML = `<li class="calculator-history__item_empty">There's no history yet</li>`;
+
+      console.log(`renderHistory was called:
+      length: 0; 
+      `);
+      return;
+    }
+
+    this.history.forEach(item => {
+      const li = document.createElement('li');
+      li.classList.add('calculator-history__item');
+
+      const prev = document.createElement('div');
+      const current = document.createElement('div');
+      prev.classList.add('calculator-history__previous-operand');
+      current.classList.add('calculator-history__current-operand');
+      prev.innerText = item.prev;
+      current.innerText = item.current;
+
+      li.appendChild(prev);
+      li.appendChild(current);
+
+      this.historyListElement.appendChild(li);
+    });
+  }
+
   static getOperationSymbolByName(name) {
     const map = {
       add: '+',
@@ -166,8 +249,10 @@ const percentOperationButton = document.querySelector('[data-operation-percent]'
 
 const previousOperandTextElement = document.querySelector('[data-previous-operand]');
 const currentOperandTextElement = document.querySelector('[data-current-operand]');
+const historyListElement = document.querySelector('[data-history-list]');
+const clearHistoryButton = document.querySelector('[data-clear-history]');
 
-const calculator = new Calculator(previousOperandTextElement, currentOperandTextElement);
+const calculator = new Calculator(previousOperandTextElement, currentOperandTextElement, historyListElement);
 
 numberButtons.forEach(button => {
   button.addEventListener('click', () => {
@@ -217,4 +302,8 @@ dotButton.addEventListener('click', () => {
   console.log(`dot button clicked`);
   calculator.appendDot();
   calculator.updateDisplay();
+});
+
+clearHistoryButton.addEventListener('click', () => {
+  calculator.clearHistory();
 });

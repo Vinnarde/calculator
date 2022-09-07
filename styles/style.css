@@ -146,11 +146,15 @@ body {
 .calculator-history__item:active {
   transform: scale(0.95);
 }
-.calculator-history__item__previous-operand {
+.calculator-history__item_empty {
+  font-size: 1.5em;
+  color: rgb(225, 225, 225);
+}
+.calculator-history__previous-operand {
   font-size: 1em;
   color: rgb(146, 146, 146);
 }
-.calculator-history__item__current-operand {
+.calculator-history__current-operand {
   font-size: 1.5em;
   color: rgb(255, 255, 255);
 }

@@ -172,8 +172,8 @@ body {
     border-radius: 5px;
 
     transition-property: background-color, transform;
-    transition-duration:  0.1s;
-    transition-timing-function:  ease;
+    transition-duration: 0.1s;
+    transition-timing-function: ease;
 
     &:hover {
       background-color: $color-button-operator-dark;
@@ -183,15 +183,21 @@ body {
       transform: scale(0.95);
     }
 
-    &__previous-operand {
-      font-size: 1em;
-      color: $color-text-previous-dark;
+    &_empty {
+      font-size: 1.5em;
+      color: $color-text-button-dark;
     }
 
-    &__current-operand {
-      font-size: 1.5em;
-      color: $color-text-current-dark;
-    }
+  }
+
+  &__previous-operand {
+    font-size: 1em;
+    color: $color-text-previous-dark;
+  }
+
+  &__current-operand {
+    font-size: 1.5em;
+    color: $color-text-current-dark;
   }
 
   &__bottom {
